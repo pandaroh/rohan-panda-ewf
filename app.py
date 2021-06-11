@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from flask import Flask, render_template
 from requests import Request, Session
 import json
@@ -30,7 +31,7 @@ cryptoPrice = CryptoPrice()
 @app.route("/")
 def getprice():
     results = cryptoPrice.get_top_20()
-#    print(results)
+
 
     for result in results:
         result['quote']['USD']['price'] = '$ ' + "{:.2f}".format(result['quote']['USD']['price'])
