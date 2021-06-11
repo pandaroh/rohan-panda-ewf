@@ -4,12 +4,12 @@ import json
 
 class Crypto:
 
-    def get_top_5(self):
+    def get_top_20(self):
 
         url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
         parameters = {
           'start':'1',
-          'limit':'5',
+          'limit':'20',
           'convert':'USD'
         }
         headers = {
@@ -29,7 +29,7 @@ crypto = Crypto()
 
 @app.route("/")
 def hello():
-    results = crypto.get_top_5()
+    results = crypto.get_top_20()
 
     for result in results:
         result['quote']['USD']['price'] = '$ ' + "{:.2f}".format(result['quote']['USD']['price'])
