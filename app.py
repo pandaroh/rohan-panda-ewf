@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from requests import Request, Session
 import json
 
-class Crypto:
+class CryptoPrice:
 
     def get_top_20(self):
 
@@ -25,11 +25,12 @@ class Crypto:
         return data['data']
 
 app = Flask(__name__)
-crypto = Crypto()
+cryptoPrice = CryptoPrice()
 
 @app.route("/")
-def hello():
-    results = crypto.get_top_20()
+def getprice():
+    results = cryptoPrice.get_top_20()
+#    print(results)
 
     for result in results:
         result['quote']['USD']['price'] = '$ ' + "{:.2f}".format(result['quote']['USD']['price'])
